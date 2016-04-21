@@ -1,0 +1,8 @@
+[{
+  "modid": "OctarineCore",
+  "name": "OctarineCore",
+  "version": "$version",
+  "mcversion": "$mcversion",
+  "description": "Common dependencies for octarine-noise's mods",
+  "authorList" : ["octarine-noise"]
+}]

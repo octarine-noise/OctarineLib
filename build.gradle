@@ -1,0 +1,43 @@
+group = 'com.github.octarine-noise'
+version = "1.0.0"
+
+//
+// OctarineCore bundles the Kotlin runtime so dependent projects don't have to
+//
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    shade "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+allprojects {
+    reobf.jar.extraLines "PK: kotlin mods/octarinecore/kotlin"
+}
+
+//
+// Define project artifacts
+//
+def manifestCfg = {
+    attributes "TweakClass": "mods.octarinecore.loader.OctarineCoreTweaker"
+    attributes "FMLAT": "OctarineCore_at.cfg"
+}
+
+jar {
+    manifest manifestCfg
+    with includeShadedDeps(configurations.shade)
+    exclude "optifine"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    manifest manifestCfg
+    from(sourceSets.main.kotlin)
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+}
