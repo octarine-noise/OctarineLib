@@ -2,7 +2,7 @@ group = 'com.github.octarine-noise'
 version = "1.0.0"
 
 //
-// OctarineCore bundles the Kotlin runtime so dependent projects don't have to
+// OctarineLib bundles the Kotlin runtime so dependent projects don't have to
 //
 configurations {
     shade
@@ -14,15 +14,15 @@ dependencies {
 }
 
 allprojects {
-    reobf.jar.extraLines "PK: kotlin mods/octarinecore/kotlin"
+    reobf.jar.extraLines "PK: kotlin mods/octarinelib/kotlin"
 }
 
 //
 // Define project artifacts
 //
 def manifestCfg = {
-    attributes "TweakClass": "mods.octarinecore.loader.OctarineCoreTweaker"
-    attributes "FMLAT": "OctarineCore_at.cfg"
+    attributes "TweakClass": "mods.octarinelib.loader.OctarineLibTweaker"
+    attributes "FMLAT": "OctarineLib_at.cfg"
 }
 
 jar {
